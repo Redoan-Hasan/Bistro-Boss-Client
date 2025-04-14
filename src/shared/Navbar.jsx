@@ -1,79 +1,158 @@
+import { useState } from "react";
+import { Link } from "react-router";
+
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
-            </ul>
+    <nav className="fixed w-full z-10 bg-[rgba(21,21,21,0.50)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link to="/" className="flex flex-col items-center">
+              <h1 className="text-white text-2xl font-bold uppercase font-cinzel">
+                BISTRO BOSS
+              </h1>
+              <p className="text-white tracking-[0.38em] text-sm font-cinzel">
+                RESTAURANT
+              </p>
+            </Link>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:block">
+            <div className="flex items-center space-x-6 font-inter">
+              <Link
+                to="/"
+                className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+              >
+                HOME
+              </Link>
+              <Link
+                to="/contact"
+                className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+              >
+                CONTACT US
+              </Link>
+              <Link
+                to="/dashboard"
+                className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+              >
+                DASHBOARD
+              </Link>
+              <Link
+                to="/menu"
+                className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+              >
+                OUR MENU
+              </Link>
+              <Link
+                to="/shop"
+                className="text-white hover:text-gray-300 uppercase text-sm font-medium flex items-center"
+              >
+                OUR SHOP
+                <div className="relative ml-1">
+                  <img
+                    src="/public/assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
+                    alt="Cart"
+                    className="w-12 h-10"
+                  />
+                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    0
+                  </span>
+                </div>
+              </Link>
+              <Link
+                to="/signin"
+                className="text-white hover:text-gray-300 uppercase text-sm font-medium flex items-center gap-3"
+              >
+                SIGN OUT
+                <div className="avatar">
+                  <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
+                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
+            <button
+              type="button"
+              onClick={toggleMenu}
+              className="text-white hover:text-gray-300 focus:outline-none"
+            >
+               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-[#151515] shadow-lg">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 font-inter">
+            <Link
+              to="/"
+              className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium uppercase"
+            >
+              HOME
+            </Link>
+            <Link
+              to="/contact"
+              className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium uppercase"
+            >
+              CONTACT US
+            </Link>
+            <Link
+              to="/dashboard"
+              className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium uppercase"
+            >
+              DASHBOARD
+            </Link>
+            <Link
+              to="/menu"
+              className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium uppercase"
+            >
+              OUR MENU
+            </Link>
+            <Link
+              to="/shop"
+              className="text-white hover:bg-gray-700 hover:text-white  px-3 py-2 rounded-md text-base font-medium uppercase flex items-center"
+            >
+              OUR SHOP
+              <div className="relative ml-2">
+                <img
+                  src="/public/assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
+                  alt="Cart"
+                  className="w-8 h-6"
+                />
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  0
+                </span>
+              </div>
+            </Link>
+            <Link
+              to="/signin"
+              className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium uppercase flex items-center gap-3"
+            >
+              SIGN OUT
+              <div className="avatar">
+                <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
+                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 

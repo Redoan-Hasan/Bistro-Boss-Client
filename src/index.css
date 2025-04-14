@@ -4,7 +4,7 @@
 @plugin "daisyui";
 
 @theme{
-    --font-cinzel : "Cinzel", "sans-serif";
+    --font-cinzel : "Cinzel", "serif";
     --font-inter : "Inter", "sans-serif";
     --font-raleway : "Raleway", "sans-serif";
 }
