@@ -1,7 +1,13 @@
+import ItemsSlider from "../Components/ItemsSlider";
+import OrderOnline from "../Components/OrderOnline";
+import Slider from "../Components/Slider";
+
 const Home = () => {
     return (
-        <div className="h-[1000px]">
-            
+        <div>
+            <Slider />
+            <OrderOnline />
+            <ItemsSlider />
         </div>
     );
 };

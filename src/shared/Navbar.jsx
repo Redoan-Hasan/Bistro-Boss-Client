@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,31 +27,31 @@ const Navbar = () => {
           {/* Desktop Navigation Links */}
           <div className="hidden md:block">
             <div className="flex items-center space-x-6 font-inter">
-              <Link
+              <NavLink
                 to="/"
-                className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+                className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium`}
               >
                 HOME
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/contact"
                 className="text-white hover:text-gray-300 uppercase text-sm font-medium"
               >
                 CONTACT US
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/dashboard"
                 className="text-white hover:text-gray-300 uppercase text-sm font-medium"
               >
                 DASHBOARD
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/menu"
                 className="text-white hover:text-gray-300 uppercase text-sm font-medium"
               >
                 OUR MENU
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/shop"
                 className="text-white hover:text-gray-300 uppercase text-sm font-medium flex items-center"
               >
@@ -66,8 +66,8 @@ const Navbar = () => {
                     0
                   </span>
                 </div>
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/signin"
                 className="text-white hover:text-gray-300 uppercase text-sm font-medium flex items-center gap-3"
               >
@@ -77,7 +77,7 @@ const Navbar = () => {
                     <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                   </div>
                 </div>
-              </Link>
+              </NavLink>
             </div>
           </div>
 
@@ -98,38 +98,38 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-[#151515] shadow-lg">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 font-inter">
-            <Link
+            <NavLink
               to="/"
               className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium uppercase"
             >
               HOME
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/contact"
               className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium uppercase"
             >
               CONTACT US
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/dashboard"
               className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium uppercase"
             >
               DASHBOARD
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/menu"
               className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium uppercase"
             >
               OUR MENU
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/shop"
               className="text-white hover:bg-gray-700 hover:text-white  px-3 py-2 rounded-md text-base font-medium uppercase flex items-center"
             >
               OUR SHOP
               <div className="relative ml-2">
                 <img
-                  src="/public/assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
+                  src="/assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
                   alt="Cart"
                   className="w-8 h-6"
                 />
@@ -137,8 +137,8 @@ const Navbar = () => {
                   0
                 </span>
               </div>
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/signin"
               className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium uppercase flex items-center gap-3"
             >
@@ -148,7 +148,7 @@ const Navbar = () => {
                   <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                 </div>
               </div>
-            </Link>
+            </NavLink>
           </div>
         </div>
       )}
