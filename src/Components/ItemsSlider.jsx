@@ -53,7 +53,7 @@ const ItemsSlider = () => {
                 <div className="p-4 sm:p-6">
                   
 
-                  <h1 className="mt-2 text-center text-3xl font-normal font-cinzel text-white">
+                  <h1 className="mt-2 text-center text-3xl font-medium font-cinzel text-[#FFF]">
                     {item.itemsTitle}
                   </h1>
                 </div>

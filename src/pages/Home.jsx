@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <div>
             <Slider />
-            <OrderOnline />
+            <OrderOnline textOne={"From 11:00am to 10:00pm"} textTwo={"ORDER ONLINE"}/>
             <ItemsSlider />
         </div>
     );
