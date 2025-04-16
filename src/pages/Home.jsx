@@ -1,10 +1,11 @@
-import AboutUs from "../Components/AboutUs";
-import CallUs from "../Components/CallUs";
 import ItemsSlider from "../Components/ItemsSlider";
-import Menu from "../Components/Menu";
 import OrderOnline from "../Components/OrderOnline";
-import Slider from "../Components/Slider";
-
+import Recommends from "../Components/Recommends";
+import Slider from "../Components/slider";
+import AboutUs from "../Components/AboutUs";
+import Menu from "../Components/Menu";
+import CallUs from "../Components/CallUs";
+import FromOurMenu from "../Components/FromOurMenu";
 const Home = () => {
     return (
         <div>
@@ -16,6 +17,8 @@ const Home = () => {
             <Menu />
             <CallUs />
             <OrderOnline textOne={"Should Try"} textTwo={"CHEF RECOMMENDS"}/>
+            <Recommends />
+            <FromOurMenu />
         </div>
     );
 };
