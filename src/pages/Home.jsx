@@ -6,6 +6,7 @@ import AboutUs from "../Components/AboutUs";
 import Menu from "../Components/Menu";
 import CallUs from "../Components/CallUs";
 import FromOurMenu from "../Components/FromOurMenu";
+import Testimonials from "../Components/Testimonials";
 const Home = () => {
     return (
         <div>
@@ -19,6 +20,7 @@ const Home = () => {
             <OrderOnline textOne={"Should Try"} textTwo={"CHEF RECOMMENDS"}/>
             <Recommends />
             <FromOurMenu />
+            <Testimonials />
         </div>
     );
 };
