@@ -1,6 +1,6 @@
-const OurMenuBannerOne = () => {
+const OurMenuBannerOne = ({bgImgUrl, title, subtitle}) => {
     return (
-        <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('/assets/menu/banner3.jpg')" }}>
+        <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url("${bgImgUrl}")` }}>
             {/* Content container */}
             <div className="relative z-10 h-full max-w-7xl mx-auto flex flex-col items-center justify-center text-center px-4">
                 {/* Horizontal dark overlay behind text */}
@@ -8,8 +8,8 @@ const OurMenuBannerOne = () => {
                 
                 {/* Text content */}
                 <div className="relative z-20 bg-black/50 py-36 px-14 md:px-0 lg:px-0 w-full">
-                    <h1 className="text-7xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-cinzel ">OUR MENU</h1>
-                    <p className="text-2xl md:text-xl text-white font-cinzel font-semibold">WOULD YOU LIKE TO TRY A DISH?</p>
+                    <h1 className="text-7xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-cinzel ">{title}</h1>
+                    <p className="text-2xl md:text-xl text-white font-cinzel font-semibold">{subtitle}</p>
                 </div>
             </div>
         </div>

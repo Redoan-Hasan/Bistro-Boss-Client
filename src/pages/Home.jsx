@@ -8,6 +8,7 @@ import CallUs from "../Components/CallUs";
 import FromOurMenu from "../Components/FromOurMenu";
 import Testimonials from "../Components/Testimonials";
 import { Helmet } from "react-helmet-async";
+import Cover from "../shared/Cover";
 const Home = () => {
     return (
         <div>
@@ -17,7 +18,7 @@ const Home = () => {
             <Slider />
             <OrderOnline textOne={"From 11:00am to 10:00pm"} textTwo={"ORDER ONLINE"}/>
             <ItemsSlider />
-            <AboutUs />
+            <Cover coverTitle={"About Us"} coverSubTitle={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at, nihil iusto ducimus incidunt quibusdam nemo."}  textBg={"bg-white"} />
             <OrderOnline textOne={"Check it out"} textTwo={"FROM OUR MENU"}/>
             <Menu />
             <CallUs />

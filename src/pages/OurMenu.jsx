@@ -7,7 +7,7 @@ const OurMenu = () => {
             <Helmet>
                 <title>Bistro Boss | Our Menu</title>
             </Helmet>
-            <OurMenuBannerOne />
+            <OurMenuBannerOne bgImgUrl={'/assets/menu/banner3.jpg'} title={'Our Menu'} subtitle={'Would you like to try a dish?'}/>
         </div>
     );
 };
