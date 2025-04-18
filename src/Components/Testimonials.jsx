@@ -71,6 +71,7 @@ const Testimonials = () => {
               <div className="flex flex-col items-center justify-center py-4 sm:py-6 md:py-8 px-2 sm:px-4 md:px-16 lg:px-32 text-center">
                 {/* Rating Stars */}
                 <div className="flex mb-3 sm:mb-6">
+                  {/* can use react rating for dynamic cases (give it a try if you want)  */}
                   {[...Array(5)].map((_, i) => (
                     <FaStar 
                       key={i} 
