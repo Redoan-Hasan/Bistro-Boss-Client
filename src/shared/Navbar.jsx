@@ -9,7 +9,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed w-full z-10 bg-[rgba(21,21,21,0.50)]">
+    <nav className="fixed w-full z-50 bg-[rgba(21,21,21,0.50)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -46,8 +46,8 @@ const Navbar = () => {
                 DASHBOARD
               </NavLink>
               <NavLink
-                to="/menu"
-                className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+                to="/ourMenu"
+                className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium`}
               >
                 OUR MENU
               </NavLink>

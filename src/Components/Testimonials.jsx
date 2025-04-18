@@ -2,9 +2,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
-import OrderOnline from "./OrderOnline";
 import { FaStar } from 'react-icons/fa';
 import { FaQuoteLeft } from 'react-icons/fa';
+import OrderOnline from './OrderOnline';
 
 const Testimonials = () => {
   const testimonials = [
