@@ -12,7 +12,7 @@ const OurMenu = () => {
             </Helmet>
             <OurMenuBannerOne bgImgUrl={'/assets/menu/banner3.jpg'} title={'Our Menu'} subtitle={'Would you like to try a dish?'}/>
             <OrderOnline textOne={"Don't miss"} textTwo={"TODAY'S OFFER"}/>
-            <MenuPageItems />
+            <MenuPageItems filterCategoryName={"popular"}/>
             <Cover coverTitle={"DESSERTS"} coverSubTitle={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} textBg={"bg-black/50"} textColor={"text-white"} />
         </div>
     );

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-const useMenu = ({filterCategoryName}) => {
+const useMenu = (filterCategoryName) => {
     const [menuItems, setMenuItems] = useState([]);
     useEffect(()=>{
         fetch('menu.json')
