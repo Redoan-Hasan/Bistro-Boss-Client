@@ -18,7 +18,7 @@ const Home = () => {
             <Slider />
             <OrderOnline textOne={"From 11:00am to 10:00pm"} textTwo={"ORDER ONLINE"}/>
             <ItemsSlider />
-            <Cover coverTitle={"About Us"} coverSubTitle={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at, nihil iusto ducimus incidunt quibusdam nemo."}  textBg={"bg-white"} />
+            <Cover coverTitle={"About Us"} coverSubTitle={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at, nihil iusto ducimus incidunt quibusdam nemo."}  textBg={"bg-white"} textColor={"text-black"}/>
             <OrderOnline textOne={"Check it out"} textTwo={"FROM OUR MENU"}/>
             <Menu />
             <CallUs />

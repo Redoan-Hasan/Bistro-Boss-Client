@@ -5,7 +5,7 @@ const MenuPageItems = () => {
     const menuItems = useMenu({filterCategoryName : 'popular'});
     console.log(menuItems);
     return (
-        <div className="max-w-7xl mx-auto px-4 my-4">
+        <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {menuItems.map((item, index) => (
                     <MenuCard key={index} name={item.name} image={item.image} price={item.price} recipe={item.recipe} />
