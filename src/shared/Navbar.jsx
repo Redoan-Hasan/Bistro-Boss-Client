@@ -52,8 +52,8 @@ const Navbar = () => {
                 OUR MENU
               </NavLink>
               <NavLink
-                to="/shop"
-                className="text-white hover:text-gray-300 uppercase text-sm font-medium flex items-center"
+                to="/ourShop"
+                className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium flex items-center`}
               >
                 OUR SHOP
                 <div className="relative ml-1">

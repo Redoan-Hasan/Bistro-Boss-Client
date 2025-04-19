@@ -27,7 +27,7 @@ const Recommends = () => {
                                 <p className="text-gray-600 mb-6 line-clamp-2">{item.recipe}</p>
                             </div>
                             <button 
-                                className="inline-block px-6 py-2 rounded-lg uppercase font-medium border-b-2 border-[#1F2937] text-[#1F2937] hover:bg-[#1F2937] hover:text-[#BB8506] transition-all duration-300"
+                                className="inline-block px-6 py-2 rounded-lg uppercase font-medium border-b-4 border-[#1F2937] text-[#1F2937] hover:bg-[#1F2937] hover:text-[#BB8506] transition-all duration-300"
                             >
                                 Add to Cart
                             </button>
