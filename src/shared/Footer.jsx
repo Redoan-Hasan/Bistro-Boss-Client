@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="w-full font-inter">
+    <footer className="w-full font-inter mt-4">
       {/* Main footer with two columns */}
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Left section - centered content with max width */}

@@ -14,6 +14,13 @@ const OurMenu = () => {
             <OrderOnline textOne={"Don't miss"} textTwo={"TODAY'S OFFER"}/>
             <MenuPageItems filterCategoryName={"popular"}/>
             <Cover coverTitle={"DESSERTS"} coverSubTitle={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} textBg={"bg-black/50"} textColor={"text-white"} />
+            <MenuPageItems filterCategoryName={"dessert"}/>
+            <Cover coverTitle={"PIZZA"} coverSubTitle={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} textBg={"bg-black/50"} textColor={"text-white"} />
+            <MenuPageItems filterCategoryName={"pizza"}/>
+            <Cover coverTitle={"SALADS"} coverSubTitle={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} textBg={"bg-black/50"} textColor={"text-white"} />
+            <MenuPageItems filterCategoryName={"salad"}/>
+            <Cover coverTitle={"SOUPS"} coverSubTitle={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} textBg={"bg-black/50"} textColor={"text-white"} />
+            <MenuPageItems filterCategoryName={"soup"}/>
         </div>
     );
 };
