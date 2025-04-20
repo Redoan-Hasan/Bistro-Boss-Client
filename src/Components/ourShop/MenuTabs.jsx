@@ -2,9 +2,9 @@ import { NavLink, Outlet } from "react-router";
 
 const MenuTabs = () => {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
             <div className="max-w-7xl mx-auto px-4 my-8">
-                <div className="flex justify-center gap-4 md:gap-8">
+                <div className="flex justify-center gap-4 md:gap-8 my-5">
                     <NavLink 
                         to="salad"
                         end
