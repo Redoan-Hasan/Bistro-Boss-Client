@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import useMenu from "../../hooks/useMenu";
 import MenuCard from "../MenuCard";
 
@@ -12,7 +13,7 @@ const MenuPageItems = ({filterCategoryName}) => {
                 ))}
             </div>
             <div className="flex justify-center items-center mt-8">
-                <button className=" px-6 py-2 uppercase font-medium border-b-2 border-black rounded-lg text-black hover:bg-black hover:text-white transition-all duration-300">ORDER YOUR FAVOURITE FOOD</button>
+                <Link to="/ourShop" className=" px-6 py-2 uppercase font-medium border-b-2 border-black rounded-lg text-black hover:bg-black hover:text-white transition-all duration-300">ORDER YOUR FAVOURITE FOOD</Link>
             </div>
         </div>
     );
