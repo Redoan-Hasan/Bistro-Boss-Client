@@ -13,7 +13,7 @@ const MenuPageItems = ({filterCategoryName}) => {
                 ))}
             </div>
             <div className="flex justify-center items-center mt-8">
-                <Link to="/ourShop" className=" px-6 py-2 uppercase font-medium border-b-2 border-black rounded-lg text-black hover:bg-black hover:text-white transition-all duration-300">ORDER YOUR FAVOURITE FOOD</Link>
+                <Link to={`/ourShop/${filterCategoryName}`}className=" px-6 py-2 uppercase font-medium border-b-2 border-black rounded-lg text-black hover:bg-black hover:text-white transition-all duration-300">ORDER YOUR FAVOURITE FOOD</Link>
             </div>
         </div>
     );

@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
         children:[
             {index: true, Component: Home},
             {path: "/ourMenu", Component: OurMenu},
-            {path: "/ourShop", Component: OurShop,
+            {path: "/ourShop/:category", Component: OurShop,
                 children: [
                     {index: true, element: <Navigate to="salad" replace />},
                     {path: "salad", element: <TabItems categoryName={'salad'}/>},

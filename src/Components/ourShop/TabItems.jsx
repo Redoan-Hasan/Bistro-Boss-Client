@@ -1,10 +1,13 @@
     import React from "react";
     import useMenu from "../../hooks/useMenu";
     import ShopMenuItems from "./ShopMenuItems";
+// import { useParams } from "react-router";
 
-    const TabItems = ({ categoryName }) => {
+    const TabItems = ({categoryName}) => {
+    // const {categoryName} = useParams();
+    // console.log(categoryName);
     const items = useMenu(categoryName);
-    console.log(categoryName);
+    // console.log(categoryName);
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map((item) => (
