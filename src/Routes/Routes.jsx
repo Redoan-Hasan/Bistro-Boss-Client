@@ -5,6 +5,7 @@
     import TabItems from "../Components/ourShop/TabItems";
     import { createBrowserRouter, Navigate } from "react-router";
 import ContactUs from "../pages/ContactUs";
+import Login from "../pages/Login";
 
     export const router = createBrowserRouter([
     {
@@ -26,6 +27,7 @@ import ContactUs from "../pages/ContactUs";
             ],
         },
         {path:"/contactUs" , Component: ContactUs},
+        {path:"/login" , Component: Login}
         ],
     },
     ]);
