@@ -34,8 +34,8 @@ const Navbar = () => {
                 HOME
               </NavLink>
               <NavLink
-                to="/contact"
-                className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+                to="/contactUs"
+                className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium`}
               >
                 CONTACT US
               </NavLink>

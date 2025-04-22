@@ -4,6 +4,7 @@
     import OurShop from "../pages/OurShop";
     import TabItems from "../Components/ourShop/TabItems";
     import { createBrowserRouter, Navigate } from "react-router";
+import ContactUs from "../pages/ContactUs";
 
     export const router = createBrowserRouter([
     {
@@ -24,6 +25,7 @@
             { path: "drinks", element: <TabItems categoryName={"drinks"} /> },
             ],
         },
+        {path:"/contactUs" , Component: ContactUs},
         ],
     },
     ]);
