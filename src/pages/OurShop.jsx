@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 
 const OurShop = () => {
   const { category } = useParams();
-  console.log(category);
+  // console.log(category);
   return (
     <div>
       <Helmet>
