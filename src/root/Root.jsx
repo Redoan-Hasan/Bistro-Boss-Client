@@ -5,7 +5,7 @@ import Navbar from '../shared/Navbar';
 
 const Root = () => {
     const location = useLocation();
-    const noHeaderAndFooter = location.pathname.includes('login');
+    const noHeaderAndFooter = location.pathname.includes('login') || location.pathname.includes('register');
     // console.log(noHeaderAndFooter);
     return (
         <div>

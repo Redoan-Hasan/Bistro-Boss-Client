@@ -6,8 +6,11 @@ import { useEffect, useRef, useState } from "react";
     LoadCanvasTemplateNoReload,
     validateCaptcha,
     } from "react-simple-captcha";
+import useAuth from "../hooks/useAuth";
+
 
     const Login = () => {
+    const {login} = useAuth();
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
     useEffect(() => {
@@ -24,7 +27,9 @@ import { useEffect, useRef, useState } from "react";
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password);
+        login(email,password)
+        .then(data =>{console.log(data)})
+        .catch(error=> console.error(error))
     }
     const handleValidateCaptcha = (e) => {
         e.preventDefault();
@@ -39,6 +44,7 @@ import { useEffect, useRef, useState } from "react";
     }
     return (
         <div className="min-h-screen w-full bg-[url('/assets/others/authentication.png')] bg-cover bg-center flex items-center justify-center py-16 px-4 font-inter">
+            <title>Bistro Boss | Login</title>
         <div className="w-full max-w-7xl bg-[url('/assets/others/authentication.png')] bg-cover bg-center p-8 rounded-lg shadow-[10px_10px_10px_10px_rgba(0,0,0,0.25)]">
             <div className="flex flex-col items-center md:flex-row">
             {/* Image Section */}

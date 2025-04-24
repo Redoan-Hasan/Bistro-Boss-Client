@@ -11,6 +11,7 @@ const Register = () => {
   };
   return (
     <div>
+        <title>Bistro Boss |Register</title>
       <div className="min-h-screen w-full bg-[url('/assets/others/authentication.png')] bg-cover bg-center flex items-center justify-center py-16 px-4 font-inter">
         <div className="w-full max-w-7xl bg-[url('/assets/others/authentication.png')] bg-cover bg-center p-8 rounded-lg shadow-[10px_10px_10px_10px_rgba(0,0,0,0.25)]">
           <div className="flex flex-col items-center md:flex-row-reverse">
