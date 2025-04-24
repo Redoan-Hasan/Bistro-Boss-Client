@@ -6,6 +6,7 @@
     import { createBrowserRouter, Navigate } from "react-router";
 import ContactUs from "../pages/ContactUs";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
     export const router = createBrowserRouter([
     {
@@ -27,7 +28,8 @@ import Login from "../pages/Login";
             ],
         },
         {path:"/contactUs" , Component: ContactUs},
-        {path:"/login" , Component: Login}
+        {path:"/login" , Component: Login},
+        {path:"/register" , Component:Register}
         ],
     },
     ]);

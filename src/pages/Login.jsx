@@ -24,6 +24,7 @@ import { useEffect, useRef, useState } from "react";
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+        console.log(email, password);
     }
     const handleValidateCaptcha = (e) => {
         e.preventDefault();
