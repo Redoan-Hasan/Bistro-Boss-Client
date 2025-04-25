@@ -201,7 +201,7 @@ const Navbar = () => {
               </div>
             </NavLink>
             {user ? (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 px-3 py-2">
                 <button
                   onClick={() =>
                     logout().then(() => {
@@ -212,7 +212,7 @@ const Navbar = () => {
                         navigate("/login");
                     })
                   }
-                  className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+                  className="text-white hover:bg-gray-700 hover:text-white text-base font-medium uppercase"
                 >
                   SIGN OUT
                 </button>
@@ -230,11 +230,7 @@ const Navbar = () => {
             ) : (
               <NavLink
                 to="/login"
-                className={({ isActive }) =>
-                  `${
-                    isActive ? "text-[#EEFF25]" : "text-white"
-                  } hover:text-gray-300 uppercase text-sm font-medium`
-                }
+                className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium uppercase"
               >
                 SIGN IN
               </NavLink>
