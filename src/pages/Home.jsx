@@ -7,7 +7,6 @@ import Menu from "../Components/Menu";
 import CallUs from "../Components/CallUs";
 import FromOurMenu from "../Components/FromOurMenu";
 import Testimonials from "../Components/Testimonials";
-// import { Helmet } from "react-helmet-async";
 import Cover from "../shared/Cover";
 const Home = () => {
     return (

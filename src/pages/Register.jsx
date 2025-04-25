@@ -1,14 +1,19 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from "react-router";
 
 const Register = () => {
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    console.log(email, password);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm()
+
+  const onSubmit = (data) => {
+    console.log(data);
   };
+
   return (
     <div>
         <title>Bistro Boss |Register</title>
@@ -28,28 +33,32 @@ const Register = () => {
             <div className="w-full md:w-1/2">
               <h2 className="mb-6 text-3xl font-bold text-center">Sign Up</h2>
 
-              <form onSubmit={handleLogin} className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                   <label className="block mb-1 text-sm font-medium">
                     Name
                   </label>
                   <input
+                    {...register("name" , {required: true , })}
                     type="text"
                     name="name"
                     placeholder="Type here"
                     className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#D1A054]"
                   />
+                  {errors.name && <span className="text-red-500">Name is required</span>}
                 </div>
                 <div>
                   <label className="block mb-1 text-sm font-medium">
                     Email
                   </label>
                   <input
+                    {...register("email", {required:true})}
                     type="email"
                     name="email"
                     placeholder="Type here"
                     className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#D1A054]"
                   />
+                  {errors.email && <span className="text-red-500">Email is required</span>}
                 </div>
 
                 <div>
@@ -57,11 +66,13 @@ const Register = () => {
                     Password
                   </label>
                   <input
+                  {...register("password",{required:true})}
                     type="password"
                     name="password"
                     placeholder="Enter your password"
                     className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#D1A054]"
                   />
+                  {errors.password && <span className="text-red-500">Password is required</span>}
                 </div>
 
                 <input
