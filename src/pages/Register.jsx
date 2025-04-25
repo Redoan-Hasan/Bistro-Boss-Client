@@ -11,7 +11,8 @@ const Register = () => {
       } = useForm()
 
   const onSubmit = (data) => {
-    console.log(data);
+    const { name, email,password} = data;
+    console.log(name, email,password);
   };
 
   return (
