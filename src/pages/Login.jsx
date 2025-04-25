@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from "react";
     import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
-    import { Link } from "react-router";
+    import { Link, useNavigate } from "react-router";
     import {
     loadCaptchaEnginge,
     LoadCanvasTemplateNoReload,
     validateCaptcha,
     } from "react-simple-captcha";
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 
     const Login = () => {
+    const navigate = useNavigate();
     const {login} = useAuth();
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
@@ -28,8 +30,22 @@ import useAuth from "../hooks/useAuth";
         const email = e.target.email.value;
         const password = e.target.password.value;
         login(email,password)
-        .then(data =>{console.log(data)})
-        .catch(error=> console.error(error))
+        .then(data =>{
+            console.log(data);
+            Swal.fire({
+                icon:'success',
+                title:"Logged In Successfully",
+            },
+            navigate("/")
+            )
+        })
+        .catch(error=> {
+            Swal.error({
+                icon:'error',
+                title:error.message,
+            }
+            )
+        })
     }
     const handleValidateCaptcha = (e) => {
         e.preventDefault();

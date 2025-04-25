@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from "react-router";
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const {registerUser , updateUserProfile} = useAuth();
@@ -17,8 +18,22 @@ const Register = () => {
     registerUser(email, password)
       .then((userCredential) => {
         updateUserProfile(name)
-        .then(()=>console.log('profile updated successfully'))
-        .catch(err=>console.error(err))
+        .then(()=>{
+          Swal.fire({
+            icon:'success',
+            title:"Registration Successful",
+            text:`Welcome ${name}`
+          }
+          )
+        })
+        .catch(err=>{
+          Swal.error({
+            icon:'error',
+            title:"Registration Failed",
+            text:`${err.message}`
+          }
+          )
+        })
         const user = userCredential.user;
         console.log(user);
       })

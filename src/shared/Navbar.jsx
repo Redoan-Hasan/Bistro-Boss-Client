@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const {user , logout} =  useAuth()
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -31,13 +33,21 @@ const Navbar = () => {
             <div className="flex items-center space-x-6 font-inter">
               <NavLink
                 to="/"
-                className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium`}
+                className={({ isActive }) =>
+                  `${
+                    isActive ? "text-[#EEFF25]" : "text-white"
+                  } hover:text-gray-300 uppercase text-sm font-medium`
+                }
               >
                 HOME
               </NavLink>
               <NavLink
                 to="/contactUs"
-                className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium`}
+                className={({ isActive }) =>
+                  `${
+                    isActive ? "text-[#EEFF25]" : "text-white"
+                  } hover:text-gray-300 uppercase text-sm font-medium`
+                }
               >
                 CONTACT US
               </NavLink>
@@ -49,13 +59,21 @@ const Navbar = () => {
               </NavLink>
               <NavLink
                 to="/ourMenu"
-                className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium`}
+                className={({ isActive }) =>
+                  `${
+                    isActive ? "text-[#EEFF25]" : "text-white"
+                  } hover:text-gray-300 uppercase text-sm font-medium`
+                }
               >
                 OUR MENU
               </NavLink>
               <NavLink
                 to="/ourShop/salad"
-                className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium flex items-center`}
+                className={({ isActive }) =>
+                  `${
+                    isActive ? "text-[#EEFF25]" : "text-white"
+                  } hover:text-gray-300 uppercase text-sm font-medium flex items-center`
+                }
               >
                 OUR SHOP
                 <div className="relative ml-1">
@@ -70,27 +88,44 @@ const Navbar = () => {
                 </div>
               </NavLink>
               {user ? (
-                                <div className="flex items-center gap-3">
-                                  <button
-                                    onClick={() => logout()}
-                                    className="text-white hover:text-gray-300 uppercase text-sm font-medium"
-                                  >
-                                    SIGN OUT
-                                  </button>
-                                  <div className="avatar">
-                                    <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
-                                      <img src={user?.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
-                                    </div>
-                                  </div>
-                                </div>
-                              ) : (
-                                <NavLink
-                                  to="/login"
-                                  className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium`}
-                                >
-                                  SIGN IN
-                                </NavLink>
-                              )}
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() =>
+                      logout().then(() => {
+                        Swal.fire({
+                          icon: "success",
+                          title: "Logout Successful!",
+                        }),
+                          navigate("/login");
+                      })
+                    }
+                    className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+                  >
+                    SIGN OUT
+                  </button>
+                  <div className="avatar">
+                    <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
+                      <img
+                        src={
+                          user?.photoURL ||
+                          "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "text-[#EEFF25]" : "text-white"
+                    } hover:text-gray-300 uppercase text-sm font-medium`
+                  }
+                >
+                  SIGN IN
+                </NavLink>
+              )}
             </div>
           </div>
 
@@ -101,7 +136,21 @@ const Navbar = () => {
               onClick={toggleMenu}
               className="text-white hover:text-gray-300 focus:outline-none"
             >
-               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {" "}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />{" "}
+              </svg>
             </button>
           </div>
         </div>
@@ -151,17 +200,45 @@ const Navbar = () => {
                 </span>
               </div>
             </NavLink>
-            <NavLink
-              to="/signin"
-              className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium uppercase flex items-center gap-3"
-            >
-              SIGN OUT
-              <div className="avatar">
-                <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
-                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            {user ? (
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() =>
+                    logout().then(() => {
+                      Swal.fire({
+                        icon: "success",
+                        title: "Logout Successful!",
+                      }),
+                        navigate("/login");
+                    })
+                  }
+                  className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+                >
+                  SIGN OUT
+                </button>
+                <div className="avatar">
+                  <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
+                    <img
+                      src={
+                        user?.photoURL ||
+                        "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      }
+                    />
+                  </div>
                 </div>
               </div>
-            </NavLink>
+            ) : (
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `${
+                    isActive ? "text-[#EEFF25]" : "text-white"
+                  } hover:text-gray-300 uppercase text-sm font-medium`
+                }
+              >
+                SIGN IN
+              </NavLink>
+            )}
           </div>
         </div>
       )}
