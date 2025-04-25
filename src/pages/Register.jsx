@@ -2,22 +2,34 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from "react-router";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm()
+  const {registerUser , updateUserProfile} = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (data) => {
-    const { name, email,password} = data;
-    console.log(name, email,password);
+    const { name, email, password } = data;
+    registerUser(email, password)
+      .then((userCredential) => {
+        updateUserProfile(name)
+        .then(()=>console.log('profile updated successfully'))
+        .catch(err=>console.error(err))
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <div>
-        <title>Bistro Boss |Register</title>
+      <title>Bistro Boss |Register</title>
       <div className="min-h-screen w-full bg-[url('/assets/others/authentication.png')] bg-cover bg-center flex items-center justify-center py-16 px-4 font-inter">
         <div className="w-full max-w-7xl bg-[url('/assets/others/authentication.png')] bg-cover bg-center p-8 rounded-lg shadow-[10px_10px_10px_10px_rgba(0,0,0,0.25)]">
           <div className="flex flex-col items-center md:flex-row-reverse">
@@ -36,30 +48,32 @@ const Register = () => {
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
-                  <label className="block mb-1 text-sm font-medium">
-                    Name
-                  </label>
+                  <label className="block mb-1 text-sm font-medium">Name</label>
                   <input
-                    {...register("name" , {required: true , })}
+                    {...register("name", { required: true })}
                     type="text"
                     name="name"
                     placeholder="Type here"
                     className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#D1A054]"
                   />
-                  {errors.name && <span className="text-red-500">Name is required</span>}
+                  {errors.name && (
+                    <span className="text-red-500">Name is required</span>
+                  )}
                 </div>
                 <div>
                   <label className="block mb-1 text-sm font-medium">
                     Email
                   </label>
                   <input
-                    {...register("email", {required:true})}
+                    {...register("email", { required: true })}
                     type="email"
                     name="email"
                     placeholder="Type here"
                     className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#D1A054]"
                   />
-                  {errors.email && <span className="text-red-500">Email is required</span>}
+                  {errors.email && (
+                    <span className="text-red-500">Email is required</span>
+                  )}
                 </div>
 
                 <div>
@@ -67,27 +81,30 @@ const Register = () => {
                     Password
                   </label>
                   <input
-                  {...register("password",{required:true})}
+                    {...register("password", { required: true , pattern:/^(?=.*[a-z])(?=.*[A-Z])/})}
                     type="password"
                     name="password"
                     placeholder="Enter your password"
                     className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#D1A054]"
                   />
-                  {errors.password && <span className="text-red-500">Password is required</span>}
+                  {errors.password && (
+                    <span className="text-red-500">Password is required</span>
+                  )}
+                  {errors.password?.type === 'pattern' && (<span className="text-red-500"> Password must contain at least one uppercase and lowercase letter</span>)}
                 </div>
 
                 <input
                   type="submit"
-                  value="Sign In"
+                  value="Sign Up"
                   className="w-full py-3 rounded transition-color bg-[#D1A054] text-white hover:bg-[#c08b3b] cursor-pointer"
                 />
               </form>
 
               <div className="mt-6 text-center">
                 <p className="text-sm text-[#D1A054]">
-                  New here?{" "}
-                  <Link to="/register" className="text-[#D1A054] font-bold">
-                    Create a New Account
+                  Already Registered?{" "}
+                  <Link to="/login" className="text-[#D1A054] font-bold">
+                    Go to login in
                   </Link>
                 </p>
 
