@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+  const {user , logout} =  useAuth()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -67,17 +69,28 @@ const Navbar = () => {
                   </span>
                 </div>
               </NavLink>
-              <NavLink
-                to="/signin"
-                className="text-white hover:text-gray-300 uppercase text-sm font-medium flex items-center gap-3"
-              >
-                SIGN OUT
-                <div className="avatar">
-                  <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
-                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                  </div>
-                </div>
-              </NavLink>
+              {user ? (
+                                <div className="flex items-center gap-3">
+                                  <button
+                                    onClick={() => logout()}
+                                    className="text-white hover:text-gray-300 uppercase text-sm font-medium"
+                                  >
+                                    SIGN OUT
+                                  </button>
+                                  <div className="avatar">
+                                    <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
+                                      <img src={user?.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
+                                    </div>
+                                  </div>
+                                </div>
+                              ) : (
+                                <NavLink
+                                  to="/login"
+                                  className={({isActive})=>`${isActive? 'text-[#EEFF25]': 'text-white'} hover:text-gray-300 uppercase text-sm font-medium`}
+                                >
+                                  SIGN IN
+                                </NavLink>
+                              )}
             </div>
           </div>
 
