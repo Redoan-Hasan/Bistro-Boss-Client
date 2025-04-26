@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ShopMenuItems = ({ id, image, name, recipe, price, item }) => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,11 +20,12 @@ const ShopMenuItems = ({ id, image, name, recipe, price, item }) => {
         recipe,
         price
       }
-      const {data} = useAxiosSecure.post("/carts", specificCartItem)
-      // eslint-disable-next-line no-unused-vars
+      axiosSecure.post("/carts", specificCartItem)
       .then(res=>{
-        Swal.fire("Added To Cart!", "", "success");
-        console.log(data);
+        if(res.data.insertedId){
+          Swal.fire("Added To Cart!", "", "success");
+        console.log( res);
+        }
       })
     } else {
       Swal.fire({
