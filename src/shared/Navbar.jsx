@@ -5,8 +5,8 @@ import Swal from "sweetalert2";
 import useCart from "../hooks/useCart";
 
 const Navbar = () => {
-  const cartCount = useCart();
-  console.log(cartCount);
+  const [cart] = useCart();
+  console.log(cart);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -86,7 +86,7 @@ const Navbar = () => {
                     className="w-12 h-10"
                   />
                   <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                    {cartCount.length}
+                    {cart?.length}
                   </span>
                 </div>
               </NavLink>

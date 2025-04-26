@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Register = () => {
+  const navigate = useNavigate();
   const {registerUser , updateUserProfile} = useAuth();
   const {
     register,
@@ -23,7 +24,8 @@ const Register = () => {
             icon:'success',
             title:"Registration Successful",
             text:`Welcome ${name}`
-          }
+          },
+          navigate("/")
           )
         })
         .catch(err=>{
