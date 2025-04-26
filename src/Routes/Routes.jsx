@@ -18,8 +18,7 @@ export const router = createBrowserRouter([
       { path: "/ourMenu", Component: OurMenu },
       {
         path: "/ourShop/:category",
-        element:<PrivateRoute> <OurShop /> </PrivateRoute>
-        ,
+        Component: OurShop,
         children: [
           { index: true, element: <Navigate to="salad" replace /> },
           { path: "salad", element: <TabItems categoryName={"salad"} /> },

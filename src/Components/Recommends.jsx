@@ -13,7 +13,7 @@ const Recommends = () => {
         <div className="max-w-7xl mx-auto px-4 py-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {recommendedItems.filter(items =>items.category === 'popular').slice(0, 3).map(item => (
-                    <div key={item.id} className="bg-white border border-gray-100 shadow-sm rounded-lg overflow-hidden flex flex-col">
+                    <div key={item?.id} className="bg-white border border-gray-100 shadow-sm rounded-lg overflow-hidden flex flex-col">
                         <div className="h-64 overflow-hidden">
                             <img 
                                 src={item.image} 
