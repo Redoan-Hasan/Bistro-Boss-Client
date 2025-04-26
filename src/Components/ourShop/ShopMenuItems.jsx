@@ -9,7 +9,16 @@ const ShopMenuItems = ({ id, image, name, recipe, price, item }) => {
   const location = useLocation();
   const handleAddToCart = (specificItem) => {
     if (user && user.email) {
-      console.log(specificItem);
+      const {_id, image, name , recipe, price} = specificItem;
+      const specificCartItem = {
+        itemId : _id,
+        userEmail : user?.email,
+        name,
+        image,
+        recipe,
+        price
+      }
+      console.log(specificCartItem);
     } else {
       Swal.fire({
         title: "Please login to add to cart",
