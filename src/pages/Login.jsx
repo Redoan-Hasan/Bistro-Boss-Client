@@ -54,7 +54,11 @@ const Login = () => {
       setDisabled(false);
     } else {
       setDisabled(true);
-      alert("Captcha Does Not Match");
+      Swal.fire({
+          icon: 'error',
+          title: 'Invalid Captcha',
+      });
+      captchaRef.current.value = "";
     }
   };
   return (
