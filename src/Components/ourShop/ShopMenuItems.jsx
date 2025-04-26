@@ -2,6 +2,7 @@ import React from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ShopMenuItems = ({ id, image, name, recipe, price, item }) => {
   const { user } = useAuth();
@@ -18,7 +19,12 @@ const ShopMenuItems = ({ id, image, name, recipe, price, item }) => {
         recipe,
         price
       }
-      console.log(specificCartItem);
+      const {data} = useAxiosSecure.post("/carts", specificCartItem)
+      // eslint-disable-next-line no-unused-vars
+      .then(res=>{
+        Swal.fire("Added To Cart!", "", "success");
+        console.log(data);
+      })
     } else {
       Swal.fire({
         title: "Please login to add to cart",
