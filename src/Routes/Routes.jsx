@@ -8,6 +8,7 @@ import ContactUs from "../pages/ContactUs";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
+import UserDashBoardRoot from "../root/UserDashBoardRoot";
 
 export const router = createBrowserRouter([
   {
@@ -33,4 +34,11 @@ export const router = createBrowserRouter([
       { path: "/register", Component: Register },
     ],
   },
+  {
+    path: "/UserDashboard",
+    Component: UserDashBoardRoot,
+    children: [
+      
+    ]
+  }
 ]);
