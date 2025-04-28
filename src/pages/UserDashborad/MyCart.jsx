@@ -2,13 +2,46 @@ import React from 'react';
 import OrderOnline from '../../Components/OrderOnline';
 import { FaTrashAlt } from 'react-icons/fa';
 import useCart from '../../hooks/useCart';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MyCart = () => {
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
+    const axiosSecure = useAxiosSecure();
 
     const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
     const totalOrders = cart.length;
 
+    const handleDelete = async (id) => {
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        });
+        
+        if (result.isConfirmed) {
+            try {
+                await axiosSecure.delete(`/MyCart/${id}`);
+                refetch();
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            } catch (error) {
+                console.log(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong! Please try again."
+                })
+            }
+        }
+    }
     return (
         <div>
             <div>
@@ -46,7 +79,7 @@ const MyCart = () => {
                         {/* Table Body */}
                         <tbody>
                             {cart?.map((item, index) => (
-                                <React.Fragment key={item.id}>
+                                <React.Fragment key={item._id}>
                                     <tr>
                                         <td className="py-4 px-2 text-center">{index + 1}</td>
                                         <td className="py-4 px-4">
@@ -54,7 +87,7 @@ const MyCart = () => {
                                         </td>
                                         <td className="py-4 px-4">{item.name}</td>
                                         <td className="py-4 px-4 text-right">${item.price.toFixed(1)}</td>
-                                        <td className="py-4 px-4 text-center">
+                                        <td onClick={() => handleDelete(item._id)} className="py-4 px-4 text-center">
                                             <button className="bg-red-600 text-white p-2 rounded">
                                                 <FaTrashAlt />
                                             </button>

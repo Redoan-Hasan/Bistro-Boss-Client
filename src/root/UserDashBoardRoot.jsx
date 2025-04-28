@@ -18,7 +18,7 @@ const UserDashBoardRoot = () => {
     };
 
     const userNavItems = [
-        { to: '/UserDashboard', icon: <FaHome />, label: 'USER HOME' },
+        { to: 'UserHome', icon: <FaHome />, label: 'USER HOME' },
         { to: '/dashboard/reservation', icon: <FaCalendarAlt />, label: 'RESERVATION' },
         { to: '/dashboard/paymentHistory', icon: <FaWallet />, label: 'PAYMENT HISTORY' },
         { to: 'MyCart', icon: <FaShoppingCart />, label: 'MY CART', count: cart?.length },
