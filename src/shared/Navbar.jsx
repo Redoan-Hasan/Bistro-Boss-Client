@@ -6,7 +6,7 @@ import useCart from "../hooks/useCart";
 
 const Navbar = () => {
   const [cart] = useCart();
-  console.log(cart);
+  // console.log(cart);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -4,9 +4,11 @@ import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Register = () => {
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const {registerUser , updateUserProfile} = useAuth();
   const {
     register,
@@ -20,13 +22,22 @@ const Register = () => {
       .then((userCredential) => {
         updateUserProfile(name)
         .then(()=>{
-          Swal.fire({
-            icon:'success',
-            title:"Registration Successful",
-            text:`Welcome ${name}`
-          },
-          navigate("/")
-          )
+          const userInfo = {
+            name : data.name,
+            email : data.email,
+          }
+          axiosPublic.post("/users" , userInfo)
+          .then((res)=>{
+            if(res.data.insertedId){
+              Swal.fire({
+                icon:'success',
+                title:"Registration Successful",
+                text:`Welcome ${name}`
+              },
+              navigate("/")
+              )
+            }
+          });
         })
         .catch(err=>{
           Swal.error({
