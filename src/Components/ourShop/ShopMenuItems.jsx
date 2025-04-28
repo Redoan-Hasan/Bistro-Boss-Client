@@ -25,7 +25,11 @@ const ShopMenuItems = ({ id, image, name, recipe, price, item }) => {
       axiosSecure.post("/carts", specificCartItem)
       .then(res=>{
         if(res.data.insertedId){
-          Swal.fire("Added To Cart!", "", "success");
+          Swal.fire({
+            title:"Added To Cart!",
+            icon:'success',
+            text:'Please visit Dashboard to see all your orders'
+          });
           refetch();
         }
       })
