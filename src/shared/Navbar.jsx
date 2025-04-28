@@ -55,7 +55,7 @@ const Navbar = () => {
                 CONTACT US
               </NavLink>
               <NavLink
-                to="/dashboard"
+                to="/UserDashboard"
                 className="text-white hover:text-gray-300 uppercase text-sm font-medium"
               >
                 DASHBOARD

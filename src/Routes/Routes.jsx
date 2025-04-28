@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import UserDashBoardRoot from "../root/UserDashBoardRoot";
+import UserHome from "../pages/UserDashborad/UserHome";
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
     path: "/UserDashboard",
     Component: UserDashBoardRoot,
     children: [
-      
+      {index:true , path: "/UserDashboard", Component: UserHome}
     ]
   }
 ]);
