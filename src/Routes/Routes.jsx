@@ -10,6 +10,7 @@ import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import UserDashBoardRoot from "../root/UserDashBoardRoot";
 import UserHome from "../pages/UserDashborad/UserHome";
+import MyCart from "../pages/UserDashborad/MyCart";
 
 export const router = createBrowserRouter([
   {
@@ -39,7 +40,8 @@ export const router = createBrowserRouter([
     path: "/UserDashboard",
     Component: UserDashBoardRoot,
     children: [
-      {index:true , path: "/UserDashboard", Component: UserHome}
+      {index:true , path: "/UserDashboard", Component: UserHome},
+      {path:"MyCart" , Component: MyCart}
     ]
   }
 ]);

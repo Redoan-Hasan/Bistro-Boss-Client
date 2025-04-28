@@ -21,7 +21,7 @@ const UserDashBoardRoot = () => {
         { to: '/UserDashboard', icon: <FaHome />, label: 'USER HOME' },
         { to: '/dashboard/reservation', icon: <FaCalendarAlt />, label: 'RESERVATION' },
         { to: '/dashboard/paymentHistory', icon: <FaWallet />, label: 'PAYMENT HISTORY' },
-        { to: '/dashboard/myCart', icon: <FaShoppingCart />, label: 'MY CART', count: cart?.length },
+        { to: 'MyCart', icon: <FaShoppingCart />, label: 'MY CART', count: cart?.length },
         { to: '/dashboard/addReview', icon: <MdRateReview />, label: 'ADD REVIEW' },
         { to: '/dashboard/myBooking', icon: <BsCalendarCheck />, label: 'MY BOOKING' },
     ];
