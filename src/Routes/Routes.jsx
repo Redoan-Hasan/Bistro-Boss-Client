@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/UserDashboard",
-    Component: UserDashBoardRoot,
+    element: <PrivateRoute><UserDashBoardRoot /></PrivateRoute>,
     children: [
       {index:true , Component: UserHome},
       {path: "UserHome", Component: UserHome},
