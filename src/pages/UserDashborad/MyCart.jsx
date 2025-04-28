@@ -4,9 +4,10 @@ import { FaTrashAlt } from 'react-icons/fa';
 import useCart from '../../hooks/useCart';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Loader from '../../shared/Loader';
 
 const MyCart = () => {
-    const [cart, refetch] = useCart();
+    const [cart, refetch , isLoading] = useCart();
     const axiosSecure = useAxiosSecure();
 
     const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
@@ -44,6 +45,7 @@ const MyCart = () => {
     }
     return (
         <div>
+            {isLoading && <Loader />}
             <div>
                 <OrderOnline textOne={"My Cart"} textTwo={"WANNA ADD MORE?"} />
             </div>

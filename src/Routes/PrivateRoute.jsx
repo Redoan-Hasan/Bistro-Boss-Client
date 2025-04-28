@@ -1,17 +1,14 @@
 import { Navigate, useLocation } from "react-router";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import Loader from "../shared/Loader";
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
 
     if(loading){
-        return (
-            <div className="h-screen w-full flex justify-center items-center">
-                <img className="w-32" src="/assets/others/loader2.gif" alt="Loading..." />
-            </div>
-        );
+        return <Loader />;
     }
 
     if (user) {
