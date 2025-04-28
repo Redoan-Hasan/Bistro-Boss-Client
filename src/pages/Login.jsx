@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-  const { login } = useAuth();
+  const { login , signInWithGoogle } = useAuth();
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   useEffect(() => {
@@ -42,12 +42,36 @@ const Login = () => {
         );
       })
       .catch((error) => {
-        Swal.error({
+        Swal.fire({
           icon: "error",
           title: error.message,
         });
       });
   };
+
+  // handle google login 
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    signInWithGoogle()
+      .then((data) => {
+        console.log(data);
+        Swal.fire(
+          {
+            icon: "success",
+            title: "Logged In Successfully",
+          },
+          navigate(from , {replace: true})
+        );
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: error.message,
+        });
+      });
+  };
+
+
   const handleValidateCaptcha = (e) => {
     e.preventDefault();
     if (validateCaptcha(captchaRef.current.value)) {
@@ -164,7 +188,7 @@ const Login = () => {
                   <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
                     <FaFacebookF />
                   </button>
-                  <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
+                  <button onClick={handleGoogleLogin} className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
                     <FaGoogle />
                   </button>
                   <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">

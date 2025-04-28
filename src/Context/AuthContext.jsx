@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createContext } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -9,25 +9,31 @@ const auth = getAuth(app);
 const AuthContext = ({children}) => {
     const [user , setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const googleProvider = new GoogleAuthProvider();
 
     // login 
     const login = (email,password) => {
-        setLoading(true);
+        setLoading(false);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     // logout 
     const logout = () => {
-        setLoading(true);
+        setLoading(false);
         return signOut(auth);
     }
 
     // register 
     const registerUser = (email,password) =>{
-        setLoading(true);
+        setLoading(false);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
+    // sing in with google
+    const signInWithGoogle = () => {
+        setLoading(false);
+        return signInWithPopup(auth, googleProvider);
+    }
 
     // update user name only 
     const updateUserProfile = (userName) => {
@@ -44,7 +50,7 @@ const AuthContext = ({children}) => {
 
 
 
-    const authInfo = {user, loading , registerUser , login , updateUserProfile , logout};
+    const authInfo = {user, loading , registerUser , login , updateUserProfile , logout , signInWithGoogle};
     return (
         <Context.Provider value={authInfo}>
             {children}
