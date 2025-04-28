@@ -9,7 +9,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 const Register = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
-  const {registerUser , updateUserProfile} = useAuth();
+  const {registerUser , updateUserProfile , signInWithGoogle} = useAuth();
   const {
     register,
     handleSubmit,
@@ -54,6 +54,27 @@ const Register = () => {
         console.error(error);
       });
   };
+
+  const handleGoogleLogin = (e) => {
+      e.preventDefault();
+      signInWithGoogle()
+        .then((data) => {
+          console.log(data);
+          Swal.fire(
+            {
+              icon: "success",
+              title: "Logged In Successfully",
+            },
+            navigate("/")
+          );
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            title: error.message,
+          });
+        });
+    };
 
   return (
     <div>
@@ -142,7 +163,7 @@ const Register = () => {
                     <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
                       <FaFacebookF />
                     </button>
-                    <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
+                    <button onClick={handleGoogleLogin} className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
                       <FaGoogle />
                     </button>
                     <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
