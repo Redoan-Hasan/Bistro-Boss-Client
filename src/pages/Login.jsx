@@ -8,14 +8,16 @@ import {
 } from "react-simple-captcha";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-  const { login , signInWithGoogle } = useAuth();
+  const { login, signInWithGoogle } = useAuth();
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
+  const axiosPublic = useAxiosPublic();
   useEffect(() => {
     setTimeout(() => {
       loadCaptchaEnginge(6, "transparent");
@@ -38,7 +40,7 @@ const Login = () => {
             icon: "success",
             title: "Logged In Successfully",
           },
-          navigate(from , {replace: true})
+          navigate(from, { replace: true })
         );
       })
       .catch((error) => {
@@ -49,19 +51,37 @@ const Login = () => {
       });
   };
 
-  // handle google login 
+  // handle google login
   const handleGoogleLogin = (e) => {
     e.preventDefault();
     signInWithGoogle()
       .then((data) => {
-        console.log(data);
-        Swal.fire(
-          {
-            icon: "success",
-            title: "Logged In Successfully",
-          },
-          navigate(from , {replace: true})
-        );
+        // console.log(data);
+        const userInfo = {
+          name: data.user.displayName,
+          email: data.user.email,
+        };
+        axiosPublic.post("/users", userInfo)
+          .then((res) => {
+            console.log(res);
+            if (res.data.insertedId || res.data.message === "user already exists") {
+              Swal.fire(
+                {
+                  icon: "success",
+                  title: "Login Successful",
+                  text: `Welcome ${res.data.displayName}`,
+                },
+                navigate("/")
+              );
+            }
+          })
+          .catch((err) => {
+            Swal.error({
+              icon: "error",
+              title: "Registration Failed",
+              text: `${err.message}`,
+            });
+          });
       })
       .catch((error) => {
         Swal.fire({
@@ -70,7 +90,6 @@ const Login = () => {
         });
       });
   };
-
 
   const handleValidateCaptcha = (e) => {
     e.preventDefault();
@@ -79,8 +98,8 @@ const Login = () => {
     } else {
       setDisabled(true);
       Swal.fire({
-          icon: 'error',
-          title: 'Invalid Captcha',
+        icon: "error",
+        title: "Invalid Captcha",
       });
       captchaRef.current.value = "";
     }
@@ -188,7 +207,10 @@ const Login = () => {
                   <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
                     <FaFacebookF />
                   </button>
-                  <button onClick={handleGoogleLogin} className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
+                  <button
+                    onClick={handleGoogleLogin}
+                    className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100"
+                  >
                     <FaGoogle />
                   </button>
                   <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
