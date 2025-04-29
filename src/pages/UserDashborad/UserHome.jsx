@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaCalendarAlt, FaShoppingCart, FaWallet } from 'react-icons/fa';
 import { MdRateReview } from 'react-icons/md';
 import { BsCalendarCheck } from 'react-icons/bs';

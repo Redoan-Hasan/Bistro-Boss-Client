@@ -5,7 +5,7 @@ import { MdRateReview } from 'react-icons/md';
 import { BsCalendarCheck } from 'react-icons/bs';
 import useCart from '../hooks/useCart';
 
-const UserDashBoardRoot = () => {
+const DashBoardRoot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [cart] = useCart() || [];
 
@@ -137,4 +137,4 @@ const UserDashBoardRoot = () => {
     );
 };
 
-export default UserDashBoardRoot;
+export default DashBoardRoot;

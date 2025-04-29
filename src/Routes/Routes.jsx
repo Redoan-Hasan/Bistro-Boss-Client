@@ -8,9 +8,9 @@ import ContactUs from "../pages/ContactUs";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
-import UserDashBoardRoot from "../root/UserDashBoardRoot";
-import UserHome from "../pages/UserDashborad/UserHome";
+import UserHome from "../pages/UserDashborad/UserHome"
 import MyCart from "../pages/UserDashborad/MyCart";
+import DashBoardRoot from "../root/DashBoardRoot";
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/UserDashboard",
-    element: <PrivateRoute><UserDashBoardRoot /></PrivateRoute>,
+    element: <PrivateRoute><DashBoardRoot /></PrivateRoute>,
     children: [
       {index:true , Component: UserHome},
       {path: "UserHome", Component: UserHome},
