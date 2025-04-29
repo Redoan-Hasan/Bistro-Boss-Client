@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
-import { FaHome, FaCalendarAlt, FaWallet, FaShoppingCart, FaUtensils, FaBars, FaTimes } from 'react-icons/fa';
+import { FaHome, FaCalendarAlt, FaWallet, FaShoppingCart, FaUtensils, FaBars, FaTimes , FaList, FaBook, FaUsers} from 'react-icons/fa';
 import { MdRateReview } from 'react-icons/md';
 import { BsCalendarCheck } from 'react-icons/bs';
 import useCart from '../hooks/useCart';
@@ -29,10 +29,10 @@ const DashBoardRoot = () => {
     ];
     const adminNavItems = [
         { to: 'adminHome', icon: <FaHome />, label: 'ADMIN HOME' },
-        { to: 'addItems', icon: <FaCalendarAlt />, label: 'ADD ITEMS' },
-        { to: 'manageItems', icon: <FaWallet />, label: 'MANAGE ITEMS' },
-        { to: 'manageBookings', icon: <FaShoppingCart />, label: 'MANAGE BOOKINGS'},
-        { to: 'allUsers', icon: <MdRateReview />, label: 'ALL USERS' }
+        { to: 'addItems', icon: <FaUtensils />, label: 'ADD ITEMS' },
+        { to: 'manageItems', icon: <FaList />, label: 'MANAGE ITEMS' },
+        { to: 'manageBookings', icon: <FaBook />, label: 'MANAGE BOOKINGS'},
+        { to: 'allUsers', icon: <FaUsers />, label: 'ALL USERS' }
     ];
 
     const commonNavItems = [
