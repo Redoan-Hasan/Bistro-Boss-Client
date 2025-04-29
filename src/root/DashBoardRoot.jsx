@@ -9,6 +9,8 @@ const DashBoardRoot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [cart] = useCart() || [];
 
+    const isAdmin = true;
+
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
@@ -24,6 +26,13 @@ const DashBoardRoot = () => {
         { to: 'MyCart', icon: <FaShoppingCart />, label: 'MY CART', count: cart?.length },
         { to: '/dashboard/addReview', icon: <MdRateReview />, label: 'ADD REVIEW' },
         { to: '/dashboard/myBooking', icon: <BsCalendarCheck />, label: 'MY BOOKING' },
+    ];
+    const adminNavItems = [
+        { to: 'adminHome', icon: <FaHome />, label: 'ADMIN HOME' },
+        { to: 'addItems', icon: <FaCalendarAlt />, label: 'ADD ITEMS' },
+        { to: 'manageItems', icon: <FaWallet />, label: 'MANAGE ITEMS' },
+        { to: 'manageBookings', icon: <FaShoppingCart />, label: 'MANAGE BOOKINGS'},
+        { to: 'allUsers', icon: <MdRateReview />, label: 'ALL USERS' }
     ];
 
     const commonNavItems = [
@@ -66,9 +75,30 @@ const DashBoardRoot = () => {
                 </div>
 
                 <div className="flex-1 p-4">
-                    {/* User Dashboard Navigation */}
+                    {/* User || Admin Dashboard Navigation */}
                     <ul className="space-y-2 text-base">
-                        {userNavItems.map((item, index) => (
+                        {isAdmin? 
+                        adminNavItems.map((item, index) => (
+                            <li key={index}>
+                                <NavLink 
+                                    to={item.to} 
+                                    onClick={closeSidebar}
+                                    className={({ isActive }) => `
+                                        flex items-center p-2 rounded-lg text-base
+                                        ${isActive 
+                                            ? 'text-white font-bold' 
+                                            : 'text-black hover:text-white/80'}
+                                        transition-colors duration-200
+                                        ${!isOpen && 'md:justify-center lg:justify-start'}
+                                    `}
+                                >
+                                    <span className="text-xl">{item.icon}</span>
+                                    <span className={`ml-3 ${!isOpen && 'md:hidden lg:inline'}`}>{item.label}</span>
+                                </NavLink>
+                            </li>
+                        ))
+                        :
+                        userNavItems.map((item, index) => (
                             <li key={index}>
                                 <NavLink 
                                     to={item.to} 
