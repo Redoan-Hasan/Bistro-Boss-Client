@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import UserHome from "../pages/UserDashborad/UserHome"
 import MyCart from "../pages/UserDashborad/MyCart";
 import DashBoardRoot from "../root/DashBoardRoot";
+import AdminHome from "../pages/UserDashborad/Admin/adminHome";
 
 const isAdmin = true
 export const router = createBrowserRouter([
@@ -41,8 +42,9 @@ export const router = createBrowserRouter([
     path: "/UserDashboard",
     element: <PrivateRoute><DashBoardRoot /></PrivateRoute>,
     children: isAdmin? 
-    [
-      {}
+    [ 
+      {index:true , Component: AdminHome},
+      {path: "adminHome" , Component: AdminHome}
     ] : [
       {index:true , Component: UserHome},
       {path: "UserHome", Component: UserHome},
