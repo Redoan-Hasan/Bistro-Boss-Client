@@ -19,11 +19,9 @@ const AllUser = () => {
             return res.data;
         }
     })
-    // Dummy data for users - will be replaced with API call later
 
 
     const handleMakeAdmin = (user) => {
-        // This function will be implemented later with API
         Swal.fire({
             title: "Are you sure?",
             text: `Make ${user.name} an admin?`,
@@ -34,12 +32,24 @@ const AllUser = () => {
             confirmButtonText: "Yes, make admin!"
         }).then((result) => {
             if (result.isConfirmed) {
+                axiosSecure.patch(`/users/admin/${user._id}`)
+                // eslint-disable-next-line no-unused-vars
+                .then(res => {
+                    refetch();
+                    Swal.fire({
+                        title: "Success!",
+                        text: `${user.name} is now an admin`,
+                        icon: "success"
+                    });
+                })
+                .catch(err => {
+                    Swal.fire({
+                        icon:'error',
+                        title:"Error Occured",
+                        text:err.message
+                    })
+                })
                 
-                Swal.fire({
-                    title: "Success!",
-                    text: `${user.name} is now an admin`,
-                    icon: "success"
-                });
             }
         });
     };
