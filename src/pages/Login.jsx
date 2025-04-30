@@ -76,7 +76,7 @@ const Login = () => {
             }
           })
           .catch((err) => {
-            Swal.error({
+            Swal.fire({
               icon: "error",
               title: "Registration Failed",
               text: `${err.message}`,
