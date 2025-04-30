@@ -1,16 +1,25 @@
-import React, { useState } from "react";
 import OrderOnline from "../../../Components/OrderOnline";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Loader from "../../../shared/Loader";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import React from "react";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const AllUser = () => {
-    
-    // Dummy data for users - will be replaced with API call later
-    const [users, setUsers] = useState([]);
+    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
+    // const [users, setUsers] = useState([]);
 
-    const {data} = useQuery
+    const {data : users = [], isLoading , refetch} = useQuery({
+        queryKey : ['users'],
+        queryFn : async() => {
+            const res = await axiosSecure.get('/users');
+            return res.data;
+        }
+    })
+    // Dummy data for users - will be replaced with API call later
 
 
     const handleMakeAdmin = (user) => {
@@ -25,11 +34,6 @@ const AllUser = () => {
             confirmButtonText: "Yes, make admin!"
         }).then((result) => {
             if (result.isConfirmed) {
-                // Update UI for demonstration purposes
-                const updatedUsers = users.map(u => 
-                    u._id === user._id ? {...u, role: 'admin'} : u
-                );
-                setUsers(updatedUsers);
                 
                 Swal.fire({
                     title: "Success!",
@@ -41,6 +45,7 @@ const AllUser = () => {
     };
 
     const handleDeleteUser = (id) => {
+        console.log(id);
         // This function will be implemented later with API
         Swal.fire({
             title: "Are you sure?",
@@ -53,20 +58,30 @@ const AllUser = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Update UI for demonstration purposes
-                const remainingUsers = users.filter(user => user._id !== id);
-                setUsers(remainingUsers);
-                
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "User has been deleted.",
-                    icon: "success"
-                });
+                axiosPublic.delete(`/users/${id}`)
+                // eslint-disable-next-line no-unused-vars
+                .then(res =>{
+                    refetch();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "User has been deleted.",
+                        icon: "success"
+                    });
+                })
+                .catch(err => {
+                    Swal.fire({
+                        icon:'error',
+                        title:"Error Occured",
+                        text:err.message
+                    })
+                })
             }
         });
     };
 
     return (
         <div>
+            {isLoading && <Loader />}
             <div>
                 <OrderOnline textOne={"How many??"} textTwo={"MANAGE ALL USERS"} />
             </div>
@@ -75,12 +90,13 @@ const AllUser = () => {
                 {/* User Summary */}
                 <div className="mb-6">
                     <h2 className="text-left font-cinzel font-bold text-xl">
-                        TOTAL USERS: {users.length}
+                        TOTAL USERS: {users?.length}
                     </h2>
                 </div>
                 
                 {/* Users Table */}
                 <div className="overflow-x-auto font-inter">
+                    {isLoading && <Loader />}
                     <table className="w-full border-collapse">
                         {/* Table Header */}
                         <thead>
@@ -95,7 +111,7 @@ const AllUser = () => {
                         
                         {/* Table Body */}
                         <tbody>
-                            {users.map((user, index) => (
+                            {users?.map((user, index) => (
                                 <React.Fragment key={user._id}>
                                     <tr>
                                         <td className="py-4 px-2 text-center">{index + 1}</td>
