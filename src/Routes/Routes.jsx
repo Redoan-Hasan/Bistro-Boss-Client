@@ -12,6 +12,7 @@ import UserHome from "../pages/UserDashborad/UserHome"
 import MyCart from "../pages/UserDashborad/MyCart";
 import DashBoardRoot from "../root/DashBoardRoot";
 import AdminHome from "../pages/UserDashborad/Admin/adminHome";
+import AllUser from "../pages/UserDashborad/Admin/AllUser";
 
 const isAdmin = true
 export const router = createBrowserRouter([
@@ -44,7 +45,8 @@ export const router = createBrowserRouter([
     children: isAdmin? 
     [ 
       {index:true , Component: AdminHome},
-      {path: "adminHome" , Component: AdminHome}
+      {path: "adminHome" , Component: AdminHome},
+      {path: "allUsers", Component: AllUser},
     ] : [
       {index:true , Component: UserHome},
       {path: "UserHome", Component: UserHome},
