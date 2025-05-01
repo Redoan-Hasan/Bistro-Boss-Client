@@ -63,7 +63,7 @@ const Login = () => {
         };
         axiosPublic.post("/users", userInfo)
           .then((res) => {
-            console.log(res);
+            // console.log(res);
             if (res.data.insertedId || res.data.message === "user already exists") {
               Swal.fire(
                 {

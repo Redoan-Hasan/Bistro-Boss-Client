@@ -91,7 +91,6 @@ const AllUser = () => {
 
     return (
         <div>
-            {isLoading && <Loader />}
             <div>
                 <OrderOnline textOne={"How many??"} textTwo={"MANAGE ALL USERS"} />
             </div>
