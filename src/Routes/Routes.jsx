@@ -13,8 +13,9 @@ import MyCart from "../pages/UserDashborad/MyCart";
 import DashBoardRoot from "../root/DashBoardRoot";
 import AdminHome from "../pages/UserDashborad/Admin/adminHome";
 import AllUser from "../pages/UserDashborad/Admin/AllUser";
+// import useCheckIsAdmin from "../hooks/useCheckIsAdmin";
 
-const isAdmin = true
+const isAdmin = true;
 export const router = createBrowserRouter([
   {
     path: "/",

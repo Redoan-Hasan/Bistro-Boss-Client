@@ -4,12 +4,13 @@ import { FaHome, FaCalendarAlt, FaWallet, FaShoppingCart, FaUtensils, FaBars, Fa
 import { MdRateReview } from 'react-icons/md';
 import { BsCalendarCheck } from 'react-icons/bs';
 import useCart from '../hooks/useCart';
+import useCheckIsAdmin from '../hooks/useCheckIsAdmin';
 
 const DashBoardRoot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [cart] = useCart() || [];
 
-    const isAdmin = true;
+    const [isAdmin] = useCheckIsAdmin();
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
