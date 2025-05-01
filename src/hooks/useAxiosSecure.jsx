@@ -34,7 +34,7 @@ const useAxiosSecure = () => {
                 text:"Please login again"
               })
             })
-            navigate('/');
+            navigate('/login');
         }
       return Promise.reject(err);
     });

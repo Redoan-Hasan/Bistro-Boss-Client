@@ -13,9 +13,8 @@ import MyCart from "../pages/UserDashborad/MyCart";
 import DashBoardRoot from "../root/DashBoardRoot";
 import AdminHome from "../pages/UserDashborad/Admin/adminHome";
 import AllUser from "../pages/UserDashborad/Admin/AllUser";
-// import useCheckIsAdmin from "../hooks/useCheckIsAdmin";
-
-const isAdmin = true;
+import AdminRoute from "./AdminRoute";
+import IndexRouteHandler from "./IndexRouteHandler";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +26,7 @@ export const router = createBrowserRouter([
         path: "/ourShop/:category",
         Component: OurShop,
         children: [
-          { index: true, element: <Navigate to="salad" replace /> },
+          // { index: true, element: <Navigate to="salad" replace /> },
           { path: "salad", element: <TabItems categoryName={"salad"} /> },
           { path: "pizza", element: <TabItems categoryName={"pizza"} /> },
           { path: "soups", element: <TabItems categoryName={"soup"} /> },
@@ -43,12 +42,10 @@ export const router = createBrowserRouter([
   {
     path: "/UserDashboard",
     element: <PrivateRoute><DashBoardRoot /></PrivateRoute>,
-    children: isAdmin? 
-    [ 
-      {index:true , Component: AdminHome},
-      {path: "adminHome" , Component: AdminHome},
-      {path: "allUsers", Component: AllUser},
-    ] : [
+    children: [ 
+      {index:true , element:<IndexRouteHandler />},
+      {path: "adminHome" , element: <AdminRoute> <AdminHome /> </AdminRoute>},
+      {path: "allUsers", element: <AdminRoute> <AllUser /> </AdminRoute>},
       {index:true , Component: UserHome},
       {path: "UserHome", Component: UserHome},
       {path:"MyCart" , Component: MyCart}

@@ -91,6 +91,7 @@ const AllUser = () => {
 
     return (
         <div>
+            {isLoading && <Loader />}
             <div>
                 <OrderOnline textOne={"How many??"} textTwo={"MANAGE ALL USERS"} />
             </div>
@@ -105,7 +106,6 @@ const AllUser = () => {
                 
                 {/* Users Table */}
                 <div className="overflow-x-auto font-inter">
-                    {isLoading && <Loader />}
                     <table className="w-full border-collapse">
                         {/* Table Header */}
                         <thead>

@@ -9,7 +9,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 const Register = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
-  const {registerUser , updateUserProfile , signInWithGoogle} = useAuth();
+  const { registerUser, updateUserProfile, signInWithGoogle } = useAuth();
   const {
     register,
     handleSubmit,
@@ -21,32 +21,31 @@ const Register = () => {
     registerUser(email, password)
       .then((userCredential) => {
         updateUserProfile(name)
-        .then(()=>{
-          const userInfo = {
-            name : data.name,
-            email : data.email,
-          }
-          axiosPublic.post("/users" , userInfo)
-          .then((res)=>{
-            if(res.data.insertedId){
-              Swal.fire({
-                icon:'success',
-                title:"Registration Successful",
-                text:`Welcome ${name}`
-              },
-              navigate("/")
-              )
-            }
+          .then(() => {
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                Swal.fire(
+                  {
+                    icon: "success",
+                    title: "Registration Successful",
+                    text: `Welcome ${name}`,
+                  },
+                  navigate("/")
+                );
+              }
+            });
+          })
+          .catch((err) => {
+            Swal.error({
+              icon: "error",
+              title: "Registration Failed",
+              text: `${err.message}`,
+            });
           });
-        })
-        .catch(err=>{
-          Swal.error({
-            icon:'error',
-            title:"Registration Failed",
-            text:`${err.message}`
-          }
-          )
-        })
         const user = userCredential.user;
         console.log(user);
       })
@@ -56,25 +55,46 @@ const Register = () => {
   };
 
   const handleGoogleLogin = (e) => {
-      e.preventDefault();
-      signInWithGoogle()
-        .then((data) => {
-          console.log(data);
-          Swal.fire(
-            {
-              icon: "success",
-              title: "Logged In Successfully",
-            },
-            navigate("/")
-          );
-        })
-        .catch((error) => {
-          Swal.fire({
-            icon: "error",
-            title: error.message,
+    e.preventDefault();
+    signInWithGoogle()
+      .then((data) => {
+        const userInfo = {
+          name: data.user.displayName,
+          email: data.user.email,
+        };
+        axiosPublic
+          .post("/users", userInfo)
+          .then((res) => {
+            // console.log(res);
+            if (
+              res.data.insertedId ||
+              res.data.message === "user already exists"
+            ) {
+              Swal.fire(
+                {
+                  icon: "success",
+                  title: "Login Successful",
+                  text: `Welcome ${res.data.displayName}`,
+                },
+                navigate("/")
+              );
+            }
+          })
+          .catch((err) => {
+            Swal.fire({
+              icon: "error",
+              title: "Registration Failed",
+              text: `${err.message}`,
+            });
           });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: error.message,
         });
-    };
+      });
+  };
 
   return (
     <div>
@@ -130,7 +150,10 @@ const Register = () => {
                     Password
                   </label>
                   <input
-                    {...register("password", { required: true , pattern:/^(?=.*[a-z])(?=.*[A-Z])/})}
+                    {...register("password", {
+                      required: true,
+                      pattern: /^(?=.*[a-z])(?=.*[A-Z])/,
+                    })}
                     type="password"
                     name="password"
                     placeholder="Enter your password"
@@ -139,7 +162,13 @@ const Register = () => {
                   {errors.password && (
                     <span className="text-red-500">Password is required</span>
                   )}
-                  {errors.password?.type === 'pattern' && (<span className="text-red-500"> Password must contain at least one uppercase and lowercase letter</span>)}
+                  {errors.password?.type === "pattern" && (
+                    <span className="text-red-500">
+                      {" "}
+                      Password must contain at least one uppercase and lowercase
+                      letter
+                    </span>
+                  )}
                 </div>
 
                 <input
@@ -163,7 +192,10 @@ const Register = () => {
                     <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
                       <FaFacebookF />
                     </button>
-                    <button onClick={handleGoogleLogin} className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
+                    <button
+                      onClick={handleGoogleLogin}
+                      className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100"
+                    >
                       <FaGoogle />
                     </button>
                     <button className="flex items-center justify-center w-8 h-8 border border-gray-400 rounded-full hover:bg-gray-100">
