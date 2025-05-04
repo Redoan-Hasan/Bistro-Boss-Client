@@ -1,9 +1,10 @@
 import { FaCalendarAlt, FaShoppingCart, FaWallet } from 'react-icons/fa';
 import { MdRateReview } from 'react-icons/md';
 import { BsCalendarCheck } from 'react-icons/bs';
+import useAuth from '../../hooks/useAuth';
 
 const UserHome = () => {
-    // Static user data (you'll make this dynamic)
+    const {user} = useAuth();
     const userName = "Awlad Hossain";
     const stats = {
         orders: 6,
@@ -58,9 +59,10 @@ const UserHome = () => {
                 <div className="bg-[#FFEFD5] p-6 rounded-lg flex flex-col items-center justify-center">
                     <div className="w-32 h-32 rounded-full border-4 border-amber-400 mb-4 overflow-hidden">
                         {/* Placeholder circle for profile image */}
-                        <div className="w-full h-full bg-white rounded-full"></div>
+                        {/* <div className="w-full h-full bg-white rounded-full"></div> */}
+                        <img className='rounded-full w-full h-full object-cover' src={user?.photoURL} alt="" />
                     </div>
-                    <h3 className="text-xl font-bold">{userName}</h3>
+                    <h3 className="text-xl font-bold">{user?.displayName}</h3>
                 </div>
                 
                 {/* Activities */}

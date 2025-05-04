@@ -56,7 +56,7 @@ const Login = () => {
     e.preventDefault();
     signInWithGoogle()
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         const userInfo = {
           name: data.user.displayName,
           email: data.user.email,
