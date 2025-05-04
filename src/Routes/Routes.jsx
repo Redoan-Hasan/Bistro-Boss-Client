@@ -15,6 +15,7 @@ import AdminHome from "../pages/UserDashborad/Admin/adminHome";
 import AllUser from "../pages/UserDashborad/Admin/AllUser";
 import AdminRoute from "./AdminRoute";
 import IndexRouteHandler from "./IndexRouteHandler";
+import AddItem from "../pages/UserDashborad/Admin/AddItem";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -43,9 +44,12 @@ export const router = createBrowserRouter([
     path: "/UserDashboard",
     element: <PrivateRoute><DashBoardRoot /></PrivateRoute>,
     children: [ 
+      // admin routes 
       {index:true , element:<IndexRouteHandler />},
       {path: "adminHome" , element: <AdminRoute> <AdminHome /> </AdminRoute>},
       {path: "allUsers", element: <AdminRoute> <AllUser /> </AdminRoute>},
+      {path: "addItem" , element: <AdminRoute><AddItem /></AdminRoute>},
+      // user routes 
       {index:true , Component: UserHome},
       {path: "UserHome", Component: UserHome},
       {path:"MyCart" , Component: MyCart}
