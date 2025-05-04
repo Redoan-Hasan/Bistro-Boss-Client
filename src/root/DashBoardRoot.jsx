@@ -30,7 +30,7 @@ const DashBoardRoot = () => {
     ];
     const adminNavItems = [
         { to: 'adminHome', icon: <FaHome />, label: 'ADMIN HOME' },
-        { to: 'addItems', icon: <FaUtensils />, label: 'ADD ITEMS' },
+        { to: 'addItem', icon: <FaUtensils />, label: 'ADD ITEMS' },
         { to: 'manageItems', icon: <FaList />, label: 'MANAGE ITEMS' },
         { to: 'manageBookings', icon: <FaBook />, label: 'MANAGE BOOKINGS'},
         { to: 'allUsers', icon: <FaUsers />, label: 'ALL USERS' }
@@ -153,7 +153,7 @@ const DashBoardRoot = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 p-4 md:p-8 lg:p-10 md:ml-16 lg:ml-0 transition-all duration-300">
+            <div className="flex-1  transition-all duration-300">
                 <Outlet />
             </div>
 
