@@ -45,6 +45,7 @@ const MyCart = () => {
     }
     return (
         <div>
+            <title>User | My Cart</title>
             {isLoading && <Loader />}
             <div>
                 <OrderOnline textOne={"My Cart"} textTwo={"WANNA ADD MORE?"} />

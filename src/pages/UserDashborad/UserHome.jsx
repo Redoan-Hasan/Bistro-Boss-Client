@@ -5,7 +5,6 @@ import useAuth from '../../hooks/useAuth';
 
 const UserHome = () => {
     const {user} = useAuth();
-    const userName = "Awlad Hossain";
     const stats = {
         orders: 6,
         reviews: 2,
@@ -15,6 +14,7 @@ const UserHome = () => {
 
     return (
         <div className="w-full p-4 font-cinzel">
+            <title>User | Home</title>
             <h2 className="text-2xl md:text-3xl font-semibold mb-6">Hi, Welcome Back!</h2>
             
             {/* Activity Cards */}

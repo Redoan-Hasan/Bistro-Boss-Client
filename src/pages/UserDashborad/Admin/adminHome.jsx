@@ -45,6 +45,7 @@ const AdminHome = () => {
 
     return (
         <div className="w-full p-4 font-cinzel">
+            <title>Admin | Home</title>
             <h2 className="text-2xl md:text-3xl font-semibold mb-6">Hi, Welcome Back!</h2>
             
             {/* Stats Cards */}
