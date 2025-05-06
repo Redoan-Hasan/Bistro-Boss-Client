@@ -1,8 +1,16 @@
-import OrderOnline from "../../../Components/OrderOnline";
 import { useForm } from "react-hook-form";
 import { FaUtensils } from "react-icons/fa";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
-const AddItem = () => {
+
+const imageHostingKey = import.meta.env.VITE_imageHostingKey;
+const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
+console.log(imageHostingAPI);
+const AddItem =() => {
+    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -10,15 +18,47 @@ const AddItem = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // Here you will implement the API call to add the item
-    // Reset form after submission
+  const onSubmit = async(data) => {
+    // console.log(data.image);
+    const image = data.image[0];
+    // console.log(imageFile);
+    const res = await axiosPublic.post(imageHostingAPI, {image} , { //the file name have to image otherwise it will give you error
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    if (res.data.success) {
+      const imgURL = res.data.data.display_url;
+      const { name, price, category, recipe } = data;
+      const newItem = {
+        name,
+        price: parseFloat(price),
+        category,
+        recipe,
+        image: imgURL,
+      };
+      await axiosSecure.post("/singleMenu", newItem)
+      .then(res=>{
+        if(res.data.insertedId){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Item added successfully',
+          })
+        }
+      })
+      .catch(err=>{
+        Swal.fire({
+          icon:'error',
+          title:"Something went wrong!",
+          text: err.message
+        })
+      })
     reset();
-  };
+  }};
 
   // Dummy categories for dropdown
-  const categories = ["salad", "pizza", "soup", "dessert", "drinks", "offered"];
+  const categories = ["salad", "pizza", "soup", "dessert", "drinks"];
 
   return (
     <div className="bg-white w-full min-h-screen">
@@ -116,7 +156,7 @@ const AddItem = () => {
             <textarea
               placeholder="Recipe Details"
               className="textarea textarea-bordered w-full h-32 bg-white focus:outline-none"
-              {...register("details", {
+              {...register("recipe", {
                 required: "Recipe details are required",
               })}
             ></textarea>
@@ -129,22 +169,7 @@ const AddItem = () => {
 
           {/* File Upload - Styled to match the image */}
           <div className="form-control w-full">
-            <input
-              type="file"
-              className="hidden"
-              id="fileInput"
-              {...register("image")}
-            />
-            <label htmlFor="fileInput" className="cursor-pointer">
-              <div className="flex items-center">
-                <span className="bg-gray-200 text-gray-700 px-4 py-2 rounded-l-md">
-                  Choose File
-                </span>
-                <span className="bg-white border border-gray-300 px-4 py-2 rounded-r-md flex-grow">
-                  No file chosen
-                </span>
-              </div>
-            </label>
+          <input {...register("image", {required : "Image is required"})} type="file" className="file-input" />
           </div>
 
           {/* Submit Button */}
