@@ -58,8 +58,8 @@ const ManageItems = () => {
                         {/* Table Header */}
                         <thead>
                             <tr>
-                                <th className="py-4 px-2 text-center bg-[#D1A054] text-white"></th>
-                                <th className="py-4 px-4 text-left bg-[#D1A054] text-white rounded-tl-lg">ITEM IMAGE</th>
+                                <th className="py-4 px-2 text-center bg-[#D1A054] text-white rounded-tl-lg"></th>
+                                <th className="py-4 px-4 text-left bg-[#D1A054] text-white ">ITEM IMAGE</th>
                                 <th className="py-4 px-4 text-left bg-[#D1A054] text-white">ITEM NAME</th>
                                 <th className="py-4 px-4 text-right bg-[#D1A054] text-white">PRICE</th>
                                 <th className="py-4 px-4 text-center bg-[#D1A054] text-white">ACTION</th>
