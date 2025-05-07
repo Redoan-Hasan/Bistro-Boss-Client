@@ -1,6 +1,6 @@
-const OrderOnline = ({textOne, textTwo}) => {
+const OrderOnline = ({textOne, textTwo, margin}) => {
     return (
-        <div className="my-12 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto text-center">
+        <div className={`${margin? margin : "my-12"} px-4 md:px-8 lg:px-16 max-w-6xl mx-auto text-center`}>
             <p className="text-[#D99904] italic font-inter text-base md:text-lg mb-2">
                 ---{textOne}---
             </p>
