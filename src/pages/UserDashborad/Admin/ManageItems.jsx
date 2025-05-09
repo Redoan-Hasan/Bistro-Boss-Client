@@ -3,6 +3,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useMenuAdmin from "../../../hooks/useMenuAdmin";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router";
 
 const ManageItems = () => {
   const [menuItems, refetch] = useMenuAdmin();
@@ -43,10 +44,6 @@ const ManageItems = () => {
     });
   };
 
-  const handleEdit = (id) => {
-    // Edit functionality will be implemented later
-    console.log("Edit item with ID:", id);
-  };
 
   return (
     <div className="bg-[#F6F6F6] w-full h-screen overflow-y-auto">
@@ -100,13 +97,14 @@ const ManageItems = () => {
                   </td>
                   <td className="py-4 px-4">{item.name}</td>
                   <td className="py-4 px-4 text-right">${item.price}</td>
+                  
                   <td className="py-4 px-4 text-center">
-                    <button
-                      onClick={() => handleEdit(item._id)}
-                      className="bg-[#D1A054] text-white p-2 rounded"
+                    <Link
+                      to={`/UserDashboard/editMenu/${item._id}`}
+                      className="bg-[#D1A054] text-white p-2 rounded inline-block"
                     >
                       <FaEdit />
-                    </button>
+                    </Link>
                   </td>
                   <td className="py-4 px-4 text-center">
                     <button

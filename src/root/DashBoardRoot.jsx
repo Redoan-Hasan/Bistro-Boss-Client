@@ -44,7 +44,7 @@ const DashBoardRoot = () => {
     ];
 
     return (
-        <div className="min-h-screen flex flex-col md:flex-row bg-gray-100 font-cinzel">
+        <div className="flex flex-col md:flex-row bg-gray-100 font-cinzel">
             {/* Toggle Button for Small and Medium Devices */}
             <button 
                 onClick={toggleSidebar}
@@ -61,7 +61,8 @@ const DashBoardRoot = () => {
                 ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
                 bg-[#D1A054] text-black
                 flex flex-col
-                h-screen
+                overflow-y-auto
+                lg:h-screen
             `}>
                 {/* Logo */}
                 <div className="p-4 text-center">
@@ -75,7 +76,7 @@ const DashBoardRoot = () => {
                     </Link>
                 </div>
 
-                <div className="flex-1 p-4">
+                <div className="flex-1 p-4 overflow-y-auto">
                     {/* User || Admin Dashboard Navigation */}
                     <ul className="space-y-2 text-base">
                         {isAdmin? 
@@ -153,7 +154,7 @@ const DashBoardRoot = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 h-screen overflow-hidden transition-all duration-300">
+            <div className="flex-1 w-full lg:h-screen overflow-y-auto pt-16 lg:pt-0">
                 <Outlet />
             </div>
 
