@@ -61,7 +61,7 @@ const DashBoardRoot = () => {
                 ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
                 bg-[#D1A054] text-black
                 flex flex-col
-                overflow-y-auto
+                h-screen
             `}>
                 {/* Logo */}
                 <div className="p-4 text-center">
@@ -153,7 +153,7 @@ const DashBoardRoot = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1  transition-all duration-300">
+            <div className="flex-1 h-screen overflow-hidden transition-all duration-300">
                 <Outlet />
             </div>
 

@@ -1,17 +1,10 @@
 import OrderOnline from "../../../Components/OrderOnline";
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useMenuAdmin from "../../../hooks/useMenuAdmin";
 
 const ManageItems = () => {
-    // Static data for now - will be replaced with dynamic data later
-    const menuItems = [
-        { _id: 1, name: "Roast Duck Breast", price: 14.5, image: "/placeholder.jpg" },
-        { _id: 2, name: "Tuna Niçoise", price: 14.5, image: "/placeholder.jpg" },
-        { _id: 3, name: "Escalope de Veau", price: 14.5, image: "/placeholder.jpg" },
-        { _id: 4, name: "Chicken and Walnut Salad", price: 14.5, image: "/placeholder.jpg" },
-        { _id: 5, name: "Fish Parmentier", price: 14.5, image: "/placeholder.jpg" },
-        { _id: 6, name: "Roasted Pork Belly", price: 14.5, image: "/placeholder.jpg" }
-    ];
+    const [menuItems] = useMenuAdmin();
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -41,7 +34,7 @@ const ManageItems = () => {
     };
 
     return (
-        <div className="bg-[#F6F6F6] w-full min-h-screen">
+        <div className="bg-[#F6F6F6] w-full h-screen overflow-y-auto">
             <OrderOnline textOne={"Hurry Up"} textTwo={"MANAGE ALL ITEMS"} margin={"my-0"}/>
             
             <div className="max-w-4xl mx-auto bg-white p-6 my-8 rounded-lg">
@@ -73,10 +66,11 @@ const ManageItems = () => {
                                 <tr key={item._id} className="border-b border-gray-200">
                                     <td className="py-4 px-2 text-center">{index + 1}</td>
                                     <td className="py-4 px-4">
-                                        <div className="w-16 h-16 bg-gray-200"></div>
+                                        {/* <div className="w-16 h-16 bg-gray-200"></div> */}
+                                        <img className="w-16 h-16" src={item.image} alt="" />
                                     </td>
                                     <td className="py-4 px-4">{item.name}</td>
-                                    <td className="py-4 px-4 text-right">${item.price.toFixed(1)}</td>
+                                    <td className="py-4 px-4 text-right">${item.price}</td>
                                     <td className="py-4 px-4 text-center">
                                         <button 
                                             onClick={() => handleEdit(item._id)}
