@@ -89,7 +89,7 @@ const ManageItems = () => {
             {/* Table Body */}
             <tbody>
               {menuItems.map((item, index) => (
-                <tr key={item._id} className="border-b border-gray-200">
+                <tr key={`${item._id}-${index}`} className="border-b border-gray-200">
                   <td className="py-4 px-2 text-center">{index + 1}</td>
                   <td className="py-4 px-4">
                     {/* <div className="w-16 h-16 bg-gray-200"></div> */}

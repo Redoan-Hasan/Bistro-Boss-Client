@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { FaUtensils } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../shared/Loader";
@@ -13,6 +13,7 @@ const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
 
 const EditMenuItem = () => {
     const {id} = useParams();
+    const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const [imagePreview, setImagePreview] = useState(null);
@@ -86,6 +87,7 @@ const EditMenuItem = () => {
       const res = await axiosSecure.patch(`/updateMenuItem/${id}`, updatedItem);
       if (res.data.modifiedCount > 0) {
         refetch();
+        navigate('/UserDashboard/manageItems')
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -131,7 +133,7 @@ const EditMenuItem = () => {
                 type="text"
                 className="input input-bordered w-full bg-white focus:outline-none"
                 defaultValue={menuItem?.name}
-                {...register("name", { required: "Recipe name is required" })}
+                {...register("name")}
               />
               {errors.name && (
                 <span className="text-red-600 text-sm mt-1">
@@ -150,9 +152,7 @@ const EditMenuItem = () => {
                 <select
                   className="select select-bordered w-full bg-white focus:outline-none"
                   defaultValue={menuItem?.category}
-                  {...register("category", {
-                    required: "Category is required",
-                  })}
+                  {...register("category")}
                 >
                   <option value="" disabled>
                     Category
@@ -182,7 +182,6 @@ const EditMenuItem = () => {
                   className="input input-bordered w-full bg-white focus:outline-none"
                   defaultValue={menuItem?.price}
                   {...register("price", {
-                    required: "Price is required",
                     min: { value: 0, message: "Price must be positive" },
                   })}
                 />
@@ -205,9 +204,7 @@ const EditMenuItem = () => {
                 placeholder="Recipe Details"
                 className="textarea textarea-bordered w-full h-32 bg-white focus:outline-none"
                 defaultValue={menuItem?.recipe}
-                {...register("recipe", {
-                  required: "Recipe details are required",
-                })}
+                {...register("recipe")}
               ></textarea>
               {errors.details && (
                 <span className="text-red-600 text-sm mt-1">
