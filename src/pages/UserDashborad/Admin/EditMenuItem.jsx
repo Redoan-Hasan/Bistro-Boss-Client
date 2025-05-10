@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { FaUtensils } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../shared/Loader";
+// import { useEffect, useState } from "react";
 
 const EditMenuItem = () => {
     const {id} = useParams();
@@ -17,7 +18,7 @@ const EditMenuItem = () => {
             return res.data;
         }
     })
-    console.log(menuItem);
+
   const {
     register,
     handleSubmit,
@@ -59,7 +60,7 @@ const EditMenuItem = () => {
                 type="text"
                 // placeholder="Recipe name"
                 className="input input-bordered w-full bg-white focus:outline-none"
-                defaultValue={menuItem.name}{...register("name", { required: "Recipe name is required" })}
+                defaultValue={menuItem?.name}{...register("name", { required: "Recipe name is required" })}
               />
               {errors.name && (
                 <span className="text-red-600 text-sm mt-1">
@@ -77,6 +78,7 @@ const EditMenuItem = () => {
                 </label>
                 <select
                   className="select select-bordered w-full bg-white focus:outline-none"
+                  defaultValue={menuItem?.category}
                   {...register("category", {
                     required: "Category is required",
                   })}
@@ -107,6 +109,7 @@ const EditMenuItem = () => {
                   min={1}
                   placeholder="Price"
                   className="input input-bordered w-full bg-white focus:outline-none"
+                  defaultValue={menuItem?.price}
                   {...register("price", {
                     required: "Price is required",
                     min: { value: 0, message: "Price must be positive" },
@@ -130,6 +133,7 @@ const EditMenuItem = () => {
               <textarea
                 placeholder="Recipe Details"
                 className="textarea textarea-bordered w-full h-32 bg-white focus:outline-none"
+                defaultValue={menuItem?.recipe}
                 {...register("recipe", {
                   required: "Recipe details are required",
                 })}

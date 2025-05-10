@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const imageHostingKey = import.meta.env.VITE_imageHostingKey;
 const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
-console.log(imageHostingAPI);
+// console.log(imageHostingAPI);
 const AddItem =() => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
