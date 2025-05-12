@@ -4,9 +4,10 @@ import Swal from "sweetalert2";
 import useMenuAdmin from "../../../hooks/useMenuAdmin";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router";
+import Loader from "../../../shared/Loader";
 
 const ManageItems = () => {
-  const [menuItems, refetch] = useMenuAdmin();
+  const [menuItems, refetch , isLoading] = useMenuAdmin();
   const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {
@@ -47,6 +48,7 @@ const ManageItems = () => {
 
   return (
     <div className="bg-[#F6F6F6] w-full h-screen overflow-y-auto">
+      {isLoading && <Loader />}
       <OrderOnline
         textOne={"Hurry Up"}
         textTwo={"MANAGE ALL ITEMS"}
